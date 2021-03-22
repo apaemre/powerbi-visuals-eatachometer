@@ -4,7 +4,7 @@
   "description": "This is a modification of the Tachometer created by Indika Chamara (IC) Ranasinghe to allow for 7 ranges.  The original source can be found on GitHub with detailed descriptions of the 9 capability option groups https://github.com/ChamaraIC/Tachometer/blob/master/README.md\n",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ChamaraIC/Tachometer.git"
+    "url": "git+https://github.com/EarnestAssoc/powerbi-visuals-eatachometer.git"
   },
   "keywords": [
     "powerbi-visuals"
@@ -15,9 +15,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ChamaraIC/Tachometer/issues"
+    "url": "https://github.com/EarnestAssoc/powerbi-visuals-eatachometer/issues"
   },
-  "homepage": "https://github.com/ChamaraIC/Tachometer/blob/master/README.md",
+  "homepage": "https://github.com/EarnestAssoc/powerbi-visuals-eatachometer/blob/main/README.md",
   "scripts": {
     "pbiviz": "pbiviz",
     "start": "pbiviz start",
