@@ -1,0 +1,12 @@
+# Ignore folders in the root of the repository.
+# If needed, prefix with additional folder names if it's not in the same folder as .tfignore.
+node_modules
+.tmp
+.vscode
+dist
+
+# https://stackoverflow.com/questions/32964920/should-i-commit-the-vscode-folder-to-source-control
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

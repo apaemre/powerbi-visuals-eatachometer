@@ -1,0 +1,25 @@
+{
+  "visual": {
+    "name": "eaTachometer",
+    "displayName": "Tachometer by E&A",
+    "guid": "eaTachometer6616D82ED23A4C048E1D3CD4604742ED",
+    "visualClassName": "Tachometer",
+    "version": "3.6.0",
+    "description": "This is a modification of the Tachometer created by Indika Chamara (IC) Ranasinghe to allow for 7 ranges.  The original source can be found on GitHub with detailed descriptions of the 9 capability option groups https://github.com/ChamaraIC/Tachometer/blob/master/README.md\n",
+    "supportUrl": "https://github.com/dm-p/powerbi-visuals-html-display",
+    "gitHubUrl": "https://github.com/dm-p/powerbi-visuals-html-display"
+  },
+  "apiVersion": "3.6.0",
+  "author": {
+    "name": "Earnest & Associates, LLC.",
+    "email": "pasupport@earnestassoc.com"
+  },
+  "assets": {
+    "icon": "assets/powerbi_icon.png"
+  },
+  "externalJS": null,
+  "style": "style/visual.less",
+  "capabilities": "capabilities.json",
+  "dependencies": null,
+  "stringResources": []
+}
