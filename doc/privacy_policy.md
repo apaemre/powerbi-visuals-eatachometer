@@ -1,4 +1,4 @@
-# HTML Display for Power BI Privacy Policy, as of 16 March 2021
+# Tachometer by E&A Privacy Policy, as of 16 March 2021
 
 ---
 [Home](../README.md) | **Privacy Policy**
