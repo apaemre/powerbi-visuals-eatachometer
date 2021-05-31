@@ -40,7 +40,7 @@ export class TachometerUtilities {
         the terms above.
     */
     // Implementation of deprecated isNumeric from JQuery https://github.com/jquery/jquery/issues/2960
-    public static isNumeric(obj: any): boolean {
+    public static ISNUMERIC(obj: any): boolean {
 		// As of jQuery 3.0, isNumeric is limited to strings and numbers (primitives or objects) that can be coerced to finite numbers (gh-2662)
 		let type = obj == null ? "" : typeof obj;
 

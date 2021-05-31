@@ -87,7 +87,7 @@ import { LabelLayoutStrategy } from "powerbi-visuals-utils-chartutils/lib/axis/a
 
 import { AxisScaleType, PercentType, AxisVisualSettings, RangeVisualSettings, TargetVisualSettings, IndicatorVisualSettings, LabelsVisualSettings, CalloutValueVisualSettings, CalloutPercentVisualSettings, MarginVisualSettings, VisualSettings, ColorScheme, RangeDefaultSettings } from "./settings";
 
-import { TachometerUtilities } from "./utilities";
+import { TachometerUtilities } from "./tachometerUtilities";
 
 const minLabelFontSize: number = 8;
 
@@ -706,7 +706,7 @@ export class Tachometer implements IVisual {
 
     private handleContextMenu() {
         this.svg.on('contextmenu', () => {
-            const mouseEvent: MouseEvent = d3.event as MouseEvent;
+            const mouseEvent: MouseEvent = <MouseEvent>d3.event;
             const eventTarget: EventTarget = mouseEvent.target;
 
             let dataPoint: any = d3Select(<d3.BaseType>eventTarget).datum();
@@ -3276,10 +3276,10 @@ export class Tachometer implements IVisual {
         // Override settings according to property pane axis values
         let axisVisualSettings = visualSettings.axis;
 
-        axisData.startAngle = TachometerUtilities.isNumeric(axisVisualSettings.startAngle) ? (axisVisualSettings.startAngle * Tachometer.DegreeToRadConversionFactor) : Tachometer.UnintializedStartAngle;
-        axisData.endAngle = TachometerUtilities.isNumeric(axisVisualSettings.endAngle) ? (axisVisualSettings.endAngle * Tachometer.DegreeToRadConversionFactor) : Tachometer.UnintializedEndAngle;
+        axisData.startAngle = TachometerUtilities.ISNUMERIC(axisVisualSettings.startAngle) ? (axisVisualSettings.startAngle * Tachometer.DegreeToRadConversionFactor) : Tachometer.UnintializedStartAngle;
+        axisData.endAngle = TachometerUtilities.ISNUMERIC(axisVisualSettings.endAngle) ? (axisVisualSettings.endAngle * Tachometer.DegreeToRadConversionFactor) : Tachometer.UnintializedEndAngle;
 
-        if (TachometerUtilities.isNumeric(axisVisualSettings.endAngle)) {
+        if (TachometerUtilities.ISNUMERIC(axisVisualSettings.endAngle)) {
             axisData.endAngle = (axisVisualSettings.endAngle * Tachometer.DegreeToRadConversionFactor);
         }
 
@@ -3287,11 +3287,11 @@ export class Tachometer implements IVisual {
             axisData.axisScaleType = axisVisualSettings.axisScaleType;
         }
 
-        if (TachometerUtilities.isNumeric(axisVisualSettings.startValue)) {
+        if (TachometerUtilities.ISNUMERIC(axisVisualSettings.startValue)) {
             axisData.startValue = axisVisualSettings.startValue;
         }
 
-        if (TachometerUtilities.isNumeric(axisVisualSettings.endValue)) {
+        if (TachometerUtilities.ISNUMERIC(axisVisualSettings.endValue)) {
             axisData.endValue = axisVisualSettings.endValue;
         }
 
