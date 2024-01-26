@@ -55,7 +55,9 @@ export enum PercentType {
     range4Start = <any>"Range4Start",
     range5Start = <any>"Range5Start",
     range6Start = <any>"Range6Start",
-    range7Start = <any>"Range7Start"
+    range7Start = <any>"Range7Start",
+    range8Start = <any>"Range8Start",
+    range9Start = <any>"Range9Start"
 }
 
 export class AxisVisualSettings {
@@ -156,6 +158,8 @@ export class VisualSettings extends DataViewObjectsParser {
     public range5: RangeVisualSettings = new RangeVisualSettings();
     public range6: RangeVisualSettings = new RangeVisualSettings();
     public range7: RangeVisualSettings = new RangeVisualSettings();
+    public range8: RangeVisualSettings = new RangeVisualSettings();
+    public range9: RangeVisualSettings = new RangeVisualSettings();
     public target: TargetVisualSettings = new TargetVisualSettings();
     public indicator: IndicatorVisualSettings = new IndicatorVisualSettings();
     public labels: LabelsVisualSettings = new LabelsVisualSettings();
@@ -174,6 +178,9 @@ export class VisualSettings extends DataViewObjectsParser {
             settings.range5.rangeColor = settings.range5.rangeColor === null ? Tachometer.DefaultRange5ColorSchemeRgr : settings.range5.rangeColor;
             settings.range6.rangeColor = settings.range6.rangeColor === null ? Tachometer.DefaultRange6ColorSchemeRgr : settings.range6.rangeColor;
             settings.range7.rangeColor = settings.range7.rangeColor === null ? Tachometer.DefaultRange7ColorSchemeRgr : settings.range7.rangeColor;
+            settings.range8.rangeColor = settings.range8.rangeColor === null ? Tachometer.DefaultRange8ColorSchemeRgr : settings.range8.rangeColor;
+            settings.range9.rangeColor = settings.range9.rangeColor === null ? Tachometer.DefaultRange9ColorSchemeRgr : settings.range9.rangeColor;
+
         } else {
             settings.range1.rangeColor = settings.range1.rangeColor === null ? Tachometer.DefaultRange1ColorSchemeGrg : settings.range1.rangeColor;
             settings.range2.rangeColor = settings.range2.rangeColor === null ? Tachometer.DefaultRange2ColorSchemeGrg : settings.range2.rangeColor;
@@ -182,6 +189,8 @@ export class VisualSettings extends DataViewObjectsParser {
             settings.range5.rangeColor = settings.range5.rangeColor === null ? Tachometer.DefaultRange5ColorSchemeGrg : settings.range5.rangeColor;
             settings.range6.rangeColor = settings.range6.rangeColor === null ? Tachometer.DefaultRange6ColorSchemeGrg : settings.range6.rangeColor;
             settings.range7.rangeColor = settings.range7.rangeColor === null ? Tachometer.DefaultRange7ColorSchemeGrg : settings.range7.rangeColor;
+            settings.range8.rangeColor = settings.range8.rangeColor === null ? Tachometer.DefaultRange8ColorSchemeGrg : settings.range8.rangeColor;
+            settings.range9.rangeColor = settings.range9.rangeColor === null ? Tachometer.DefaultRange9ColorSchemeGrg : settings.range9.rangeColor;
         }
 
         return settings;

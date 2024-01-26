@@ -196,6 +196,8 @@ export interface TachometerAxisData extends TooltipEnabledDataPoint {
     range5: TachometerRangeData;
     range6: TachometerRangeData;
     range7: TachometerRangeData;
+    range8: TachometerRangeData;
+    range9: TachometerRangeData;
     target: TachometerTargetData;
     dataLabels: TachometerDataLabelsData;
     offset: Offset;
@@ -317,6 +319,8 @@ export interface TachometerRoleNames {
     range5StartValue: string;
     range6StartValue: string;
     range7StartValue: string;
+    range8StartValue: string;
+    range9StartValue: string;
     displayFilter: string;
 }
 
@@ -406,6 +410,8 @@ export class Tachometer implements IVisual {
     public static DefaultRange5ColorSchemeRgr = '#FBBC05';   // Yellow
     public static DefaultRange6ColorSchemeRgr = '#FB9B05';   // Orange
     public static DefaultRange7ColorSchemeRgr = '#EA4335';   // Red
+    public static DefaultRange8ColorSchemeRgr = '#FB9B05';   // Orange
+    public static DefaultRange9ColorSchemeRgr = '#FBBC05';   // Yellow
 
     // Green/Red/Green Color Scheme
     public static DefaultRange1ColorSchemeGrg = '#34A853';   // Green
@@ -415,6 +421,8 @@ export class Tachometer implements IVisual {
     public static DefaultRange5ColorSchemeGrg = '#FB9B05';   // Orange
     public static DefaultRange6ColorSchemeGrg = '#FBBC05';   // Yellow
     public static DefaultRange7ColorSchemeGrg = '#34A853';   // Green
+    public static DefaultRange8ColorSchemeGrg = '#FBBC05';   // Yellow
+    public static DefaultRange9ColorSchemeGrg = '#FB9B05';   // Orange
 
     public static DefaultLabelColor: string = '#777777';
 
@@ -500,6 +508,8 @@ export class Tachometer implements IVisual {
         range5StartValue: 'Range5StartValue',
         range6StartValue: 'Range6StartValue',
         range7StartValue: 'Range7StartValue',
+        range8StartValue: 'Range8StartValue',
+        range9StartValue: 'Range9StartValue',
         displayFilter: 'DisplayFilter',
     };
     
@@ -519,6 +529,8 @@ export class Tachometer implements IVisual {
     private range5Arc: d3.Arc<any, d3.DefaultArcObject>;
     private range6Arc: d3.Arc<any, d3.DefaultArcObject>;
     private range7Arc: d3.Arc<any, d3.DefaultArcObject>;
+    private range8Arc: d3.Arc<any, d3.DefaultArcObject>;
+    private range9Arc: d3.Arc<any, d3.DefaultArcObject>;
     private centerArc: d3.Arc<any, d3.DefaultArcObject>;
 
     private range1ArcPath: d3.Selection<d3.BaseType, any, any, any>;
@@ -528,6 +540,8 @@ export class Tachometer implements IVisual {
     private range5ArcPath: d3.Selection<d3.BaseType, any, any, any>;
     private range6ArcPath: d3.Selection<d3.BaseType, any, any, any>;
     private range7ArcPath: d3.Selection<d3.BaseType, any, any, any>;
+    private range8ArcPath: d3.Selection<d3.BaseType, any, any, any>;
+    private range9ArcPath: d3.Selection<d3.BaseType, any, any, any>;
     private centerArcPath: d3.Selection<d3.BaseType, any, any, any>;
     private calloutLabel: d3.Selection<d3.BaseType, any, any, any>;
     private calloutRectangle: TachometerRectangle;
@@ -583,6 +597,8 @@ export class Tachometer implements IVisual {
         this.range5Arc = d3.arc();
         this.range6Arc = d3.arc();
         this.range7Arc = d3.arc();
+        this.range8Arc = d3.arc();
+        this.range9Arc = d3.arc();
         this.centerArc = d3.arc();
 
         this.range1ArcPath = mainGraphicsContext.append('path').classed('range1Arc', true);
@@ -592,6 +608,8 @@ export class Tachometer implements IVisual {
         this.range5ArcPath = mainGraphicsContext.append('path').classed('range5Arc', true);
         this.range6ArcPath = mainGraphicsContext.append('path').classed('range6Arc', true);
         this.range7ArcPath = mainGraphicsContext.append('path').classed('range7Arc', true);
+        this.range8ArcPath = mainGraphicsContext.append('path').classed('range8Arc', true);
+        this.range9ArcPath = mainGraphicsContext.append('path').classed('range9Arc', true);
 
         // The needle is added to overlay context to make sure it always renders above target indicator
         this.needle = overlayGraphicsContext.append('path')
@@ -663,6 +681,8 @@ export class Tachometer implements IVisual {
             range5: { startValue: Tachometer.UnintializedRangeStartValue, endValue: Tachometer.UninitializedEndValue, rangeColor: Tachometer.DefaultRange3ColorSchemeRgr, innerRadiusRatio: 0.5, radius: 1, innerRadius: 0.5, startAngle: 0, endAngle: 0, },
             range6: { startValue: Tachometer.UnintializedRangeStartValue, endValue: Tachometer.UninitializedEndValue, rangeColor: Tachometer.DefaultRange3ColorSchemeRgr, innerRadiusRatio: 0.5, radius: 1, innerRadius: 0.5, startAngle: 0, endAngle: 0, },
             range7: { startValue: Tachometer.UnintializedRangeStartValue, endValue: Tachometer.UninitializedEndValue, rangeColor: Tachometer.DefaultRange3ColorSchemeRgr, innerRadiusRatio: 0.5, radius: 1, innerRadius: 0.5, startAngle: 0, endAngle: 0, },
+            range8: { startValue: Tachometer.UnintializedRangeStartValue, endValue: Tachometer.UninitializedEndValue, rangeColor: Tachometer.DefaultRange3ColorSchemeRgr, innerRadiusRatio: 0.5, radius: 1, innerRadius: 0.5, startAngle: 0, endAngle: 0, },
+            range9: { startValue: Tachometer.UnintializedRangeStartValue, endValue: Tachometer.UninitializedEndValue, rangeColor: Tachometer.DefaultRange3ColorSchemeRgr, innerRadiusRatio: 0.5, radius: 1, innerRadius: 0.5, startAngle: 0, endAngle: 0, },
             target: {
                 show: Tachometer.defaultTargetSettings.show,
                 value: Tachometer.defaultTargetSettings.value,
@@ -1135,6 +1155,13 @@ export class Tachometer implements IVisual {
             case PercentType.range7Start:
                 hundredPercentValue = axisData.range7.startValue;
 
+                break;
+            case PercentType.range8Start:
+                hundredPercentValue = axisData.range8.startValue;
+                break;
+
+            case PercentType.range9Start:
+                hundredPercentValue = axisData.range9.startValue;
                 break;
         }
 
@@ -2348,6 +2375,8 @@ export class Tachometer implements IVisual {
         let range5: TachometerRangeData = axisData.range5;
         let range6: TachometerRangeData = axisData.range6;
         let range7: TachometerRangeData = axisData.range7;
+        let range8: TachometerRangeData = axisData.range8;
+        let range9: TachometerRangeData = axisData.range9;
 
         let currentStart: number = axisData.startValue;
         let currentEnd: number = axisData.endValue;
@@ -2360,6 +2389,8 @@ export class Tachometer implements IVisual {
             range5.startValue,
             range6.startValue,
             range7.startValue,
+            range8.startValue,
+            range9.startValue,
             currentEnd
         ];
 
@@ -2382,7 +2413,9 @@ export class Tachometer implements IVisual {
         range4.endValue = range5.startValue = boarders[4];
         range5.endValue = range6.startValue = boarders[5];
         range6.endValue = range7.startValue = boarders[6];
-        range7.endValue = boarders[7];
+        range7.endValue = range8.startValue = boarders[7];
+        range8.endValue = range9.startValue = boarders[8];
+        range9.endValue = boarders[9];
 
         axisData.range1 = this.completeAxisRange(axisData.range1, radius);
         axisData.range2 = this.completeAxisRange(axisData.range2, radius);
@@ -2391,6 +2424,8 @@ export class Tachometer implements IVisual {
         axisData.range5 = this.completeAxisRange(axisData.range5, radius);
         axisData.range6 = this.completeAxisRange(axisData.range6, radius);
         axisData.range7 = this.completeAxisRange(axisData.range7, radius);
+        axisData.range8 = this.completeAxisRange(axisData.range8, radius);
+        axisData.range9 = this.completeAxisRange(axisData.range9, radius);
 
         axisData.radius = radius;
         axisData.axisLabelRadius = radius + this.gaugeStyle.labels.padding;
@@ -2450,6 +2485,12 @@ export class Tachometer implements IVisual {
 
         // Range 7
         this.updateVisualRangeComponents(transformString, viewModel.axis.range7, this.range7Arc, this.range7ArcPath);
+
+        // Range 8
+        this.updateVisualRangeComponents(transformString, viewModel.axis.range8, this.range8Arc, this.range8ArcPath);
+
+        // Range 9
+        this.updateVisualRangeComponents(transformString, viewModel.axis.range9, this.range9Arc, this.range9ArcPath);
 
         let indicator = viewModel.axis.indicator;
 
@@ -2636,6 +2677,10 @@ export class Tachometer implements IVisual {
         axisData.range6.endValue = Tachometer.UninitializedEndValue;
         axisData.range7.startValue = Tachometer.UnintializedRangeStartValue;
         axisData.range7.endValue = Tachometer.UninitializedEndValue;
+        axisData.range8.startValue = Tachometer.UnintializedRangeStartValue;
+        axisData.range8.endValue = Tachometer.UninitializedEndValue;
+        axisData.range9.startValue = Tachometer.UnintializedRangeStartValue;
+        axisData.range9.endValue = Tachometer.UninitializedEndValue;
         axisData.target.value = Tachometer.UninitializedStartValue;
         axisData.target.innerRadiusRatio = Tachometer.UninitializedRatio;
 
@@ -2775,6 +2820,26 @@ export class Tachometer implements IVisual {
                 axisData.tooltipInfo.push({ displayName: Tachometer.RoleNames.range7StartValue, value: value.toString() });
             }
         }
+
+        if (col.roles[Tachometer.RoleNames.range8StartValue]) {
+            if (value === undefined || isNaN(value)) {
+                axisData.range8.startValue = Tachometer.UninitializedStartValue;
+            } else {
+                axisData.range8.startValue = value;
+
+                axisData.tooltipInfo.push({ displayName: Tachometer.RoleNames.range8StartValue, value: value.toString() });
+            }
+        }
+    
+        if (col.roles[Tachometer.RoleNames.range9StartValue]) {
+            if (value === undefined || isNaN(value)) {
+                axisData.range9.startValue = Tachometer.UninitializedStartValue;
+            } else {
+                axisData.range9.startValue = value;
+
+                axisData.tooltipInfo.push({ displayName: Tachometer.RoleNames.range9StartValue, value: value.toString() });
+            }
+        }
     }
 
     private transformTachometerSettings(dataView: DataView, axisData: TachometerAxisData, visualSettings: VisualSettings): TachometerAxisData {
@@ -2788,6 +2853,9 @@ export class Tachometer implements IVisual {
             axisData.range5 = Tachometer.transformRangeSettings(dataView, 'range5', axisData.range5, Tachometer.DefaultRange3ColorSchemeGrg, visualSettings && visualSettings.range5);
             axisData.range6 = Tachometer.transformRangeSettings(dataView, 'range6', axisData.range6, Tachometer.DefaultRange3ColorSchemeGrg, visualSettings && visualSettings.range6);
             axisData.range7 = Tachometer.transformRangeSettings(dataView, 'range7', axisData.range7, Tachometer.DefaultRange3ColorSchemeGrg, visualSettings && visualSettings.range7);
+            axisData.range8 = Tachometer.transformRangeSettings(dataView, 'range8', axisData.range8, Tachometer.DefaultRange3ColorSchemeGrg, visualSettings && visualSettings.range8);
+            axisData.range9 = Tachometer.transformRangeSettings(dataView, 'range9', axisData.range9, Tachometer.DefaultRange3ColorSchemeGrg, visualSettings && visualSettings.range9);
+
         } else {
             axisData.range1 = Tachometer.transformRangeSettings(dataView, 'range1', axisData.range1, Tachometer.DefaultRange1ColorSchemeRgr, visualSettings && visualSettings.range1);
             axisData.range2 = Tachometer.transformRangeSettings(dataView, 'range2', axisData.range2, Tachometer.DefaultRange2ColorSchemeRgr, visualSettings && visualSettings.range2);
@@ -2796,6 +2864,9 @@ export class Tachometer implements IVisual {
             axisData.range5 = Tachometer.transformRangeSettings(dataView, 'range5', axisData.range5, Tachometer.DefaultRange3ColorSchemeRgr, visualSettings && visualSettings.range5);
             axisData.range6 = Tachometer.transformRangeSettings(dataView, 'range6', axisData.range6, Tachometer.DefaultRange3ColorSchemeRgr, visualSettings && visualSettings.range6);
             axisData.range7 = Tachometer.transformRangeSettings(dataView, 'range7', axisData.range7, Tachometer.DefaultRange3ColorSchemeRgr, visualSettings && visualSettings.range7);
+            axisData.range8 = Tachometer.transformRangeSettings(dataView, 'range8', axisData.range8, Tachometer.DefaultRange3ColorSchemeRgr, visualSettings && visualSettings.range8);
+            axisData.range9 = Tachometer.transformRangeSettings(dataView, 'range9', axisData.range9, Tachometer.DefaultRange3ColorSchemeRgr, visualSettings && visualSettings.range9);
+
         }
 
         axisData.dataLabels = Tachometer.transformDataLabelSettings(dataView, 'labels', Tachometer.getDefaultTachometerLabelSettings(), visualSettings && visualSettings.labels);
@@ -2983,7 +3054,7 @@ export class Tachometer implements IVisual {
         target.radius = axisData.radius;
 
         target.innerRadius = target.innerRadiusRatio === Tachometer.UninitializedRatio
-            ? Math.max(axisData.range1.innerRadius, axisData.range2.innerRadius, axisData.range3.innerRadius, axisData.range4.innerRadius, axisData.range5.innerRadius, axisData.range6.innerRadius, axisData.range7.innerRadius)
+            ? Math.max(axisData.range1.innerRadius, axisData.range2.innerRadius, axisData.range3.innerRadius, axisData.range4.innerRadius, axisData.range5.innerRadius, axisData.range6.innerRadius, axisData.range7.innerRadius, axisData.range8.innerRadius, axisData.range9.innerRadius)
             : target.radius * target.innerRadiusRatio;
 
         target.innerRadius = Tachometer.clamp(target.innerRadius, axisData.indicator.baseRadius, axisData.radius);
@@ -4266,6 +4337,15 @@ export class Tachometer implements IVisual {
                 break;
             case 'range7':
                 this.enumerateRange(enumeration, this.viewModel && this.viewModel.settings && this.viewModel.settings.range7, 'range7', 'Range 7', true, Tachometer.RoleNames.range7StartValue);
+
+                break;
+            case 'range8':
+                this.enumerateRange(enumeration, this.viewModel && this.viewModel.settings && this.viewModel.settings.range8, 'range8', 'Range 8', true, Tachometer.RoleNames.range8StartValue);
+
+                break;
+            case 'range9':
+                this.enumerateRange(enumeration, this.viewModel && this.viewModel.settings && this.viewModel.settings.range9, 'range9', 'Range 9', true, Tachometer.RoleNames.range9StartValue);
+
 
                 break;
             case 'target':

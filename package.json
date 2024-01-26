@@ -1,45 +1,50 @@
 {
-  "name": "ea-powerbi-visuals-tachometer",
+  "name": "apaemre-powerbi-visuals-tachometer",
   "version": "2.6.0",
   "description": "This is a modification of the Tachometer created by Indika Chamara (IC) Ranasinghe to allow for 7 ranges.  The original source can be found on GitHub with detailed descriptions of the 9 capability option groups https://github.com/ChamaraIC/Tachometer/blob/master/README.md\n",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EarnestAssoc/powerbi-visuals-eatachometer.git"
+    "url": "git+https://github.com/apaemre/powerbi-visuals-eatachometer.git"
   },
   "keywords": [
     "powerbi-visuals"
   ],
   "author": {
-    "name": "Earnest & Associates, LLC.",
-    "email": "pasupport@earnestassoc.com"
+    "name": "apaemre",
+    "email": "support@example.com"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/EarnestAssoc/powerbi-visuals-eatachometer/issues"
+    "url": "https://github.com/apaemre/powerbi-visuals-eatachometer/issues"
   },
-  "homepage": "https://github.com/EarnestAssoc/powerbi-visuals-eatachometer/blob/main/README.md",
+  "homepage": "https://github.com/apaemre/powerbi-visuals-eatachometer/blob/main/README.md",
   "scripts": {
     "pbiviz": "pbiviz",
     "start": "pbiviz start",
     "package": "pbiviz package",
-    "lint": "tslint -c tslint.json -p tsconfig.json"
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "eslint": "npx eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
     "core-js": "^3.13.1",
-    "d3": "^5.16.0",
+    "d3": "^7.8.5",
+    "eslint": "^8.56.0",
+    "eslint-plugin-powerbi-visuals": "^0.8.1",
     "lodash": "^4.17.21",
-    "powerbi-visuals-utils-chartutils": "^2.6.0",
-    "powerbi-visuals-utils-colorutils": "^2.3.1",
+    "powerbi-visuals-utils-chartutils": "^6.0.2",
+    "powerbi-visuals-utils-colorutils": "^6.0.3",
     "powerbi-visuals-utils-dataviewutils": "2.0.1",
-    "powerbi-visuals-utils-formattingutils": "^4.7.1",
-    "powerbi-visuals-utils-svgutils": "^2.3.2",
+    "powerbi-visuals-utils-formattingutils": "^6.0.3",
+    "powerbi-visuals-utils-svgutils": "^6.0.3",
     "powerbi-visuals-utils-tooltiputils": "^2.5.2",
-    "powerbi-visuals-utils-typeutils": "^2.3.1",
+    "powerbi-visuals-utils-typeutils": "^6.0.2",
     "regenerator-runtime": "^0.13.5"
   },
   "devDependencies": {
     "@types/d3": "^5.16.4",
-    "powerbi-visuals-api": "^3.6.0",
+    "powerbi-visuals-api": "^4.7.0",
     "ts-loader": "4.5.0",
     "tslint": "^5.18.0",
     "tslint-microsoft-contrib": "^6.2.0",

@@ -61,6 +61,18 @@
             "description": "Start value of Range7"
         },
         {
+            "name": "Range8StartValue",
+            "kind": "Measure",
+            "displayName": "Range8 Start Value",
+            "description": "Start value of Range8"
+        },
+        {
+            "name": "Range9StartValue",
+            "kind": "Measure",
+            "displayName": "Range9 Start Value",
+            "description": "Start value of Range9"
+        },
+        {
             "name": "DisplayFilter",
             "kind": "Measure",
             "displayName": "Display Filter",
@@ -353,6 +365,68 @@
                 "startValue": {
                     "displayName": "Start Value",
                     "description": "Range7 start value",
+                    "type": {
+                        "numeric": true
+                    }
+                }
+            }
+        },
+        "range8": {
+            "displayName": "Range 8",
+            "properties": {
+                "rangeColor": {
+                    "displayName": "Color",
+                    "description": "Range8 color",
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "thickness": {
+                    "displayName": "Thickness",
+                    "description": "Range8 thickness as percentage of gauge radius",
+                    "placeHolderText": "50%",
+                    "type": {
+                        "numeric": true
+                    }
+                },
+                "startValue": {
+                    "displayName": "Start Value",
+                    "description": "Range8 start value",
+                    "type": {
+                        "numeric": true
+                    }
+                }
+            }
+        },
+        "range9": {
+            "displayName": "Range 9",
+            "properties": {
+                "rangeColor": {
+                    "displayName": "Color",
+                    "description": "Range9 color",
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "thickness": {
+                    "displayName": "Thickness",
+                    "description": "Range9 thickness as percentage of gauge radius",
+                    "placeHolderText": "50%",
+                    "type": {
+                        "numeric": true
+                    }
+                },
+                "startValue": {
+                    "displayName": "Start Value",
+                    "description": "Range9 start value",
                     "type": {
                         "numeric": true
                     }
@@ -745,6 +819,14 @@
                         "min": 0,
                         "max": 1
                     },
+                    "Range8StartValue": {
+                        "min": 0,
+                        "max": 1
+                    },
+                    "Range9StartValue": {
+                        "min": 0,
+                        "max": 1
+                    },
                     "DisplayFilter": {
                         "min": 0,
                         "max": 1
@@ -802,6 +884,16 @@
                         {
                             "bind": {
                                 "to": "Range7StartValue"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "Range8StartValue"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "Range8StartValue"
                             }
                         },
                         {
